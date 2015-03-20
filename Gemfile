@@ -27,6 +27,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # CSS
 gem 'bootstrap-sass'
+# shiny template
+gem 'bootswatch-rails'
 
 
 # simple REST API
