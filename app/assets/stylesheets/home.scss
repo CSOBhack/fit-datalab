@@ -1,20 +1,38 @@
+.col-xs-4
+{
+  font-size: 0.8em;
+
+  span 
+  {
+    margin-bottom: 8px;
+  }
+}
+
+.col-sm-3
+{
+  font-size: 1em;
+
+  span 
+  {
+    margin-bottom: 0px;
+  }
+}
+
 .item {
-  position: relative;
-  float: left;
-  width: 200px;
-  height: 100px;
-  margin: 5px;
-  padding: 10px;
-  background: #336699;
-  background-image: linear-gradient( to bottom, hsla(0, 1%, 0%, 0), hsla(0, 0%, 0%, 0.5) );
-  color: white;
+  position:      relative;
+  float:         left;
+  width:         200px;
+  height:        100px;
+  margin:        5px;
+  padding:       10px;    
+  color:         white;
   border-radius: 0.5em 0.5em 0.5em 0.5em;
 
-  h4 {
+/*  h4 {
     padding-top: 10px;
     text-align: center;
-  }
-  .badge {
+  }*/
+/*  .badge {
     position: absolute;
     top:10px;
     left: 10px;
@@ -25,34 +43,39 @@
     position: absolute;
     top:10px;
     right: 10px;
-  }
+  }*/
 
-  a {
+/*  a {
     text-decoration: none;
   }
 
   a:hover {
     color: #16b5f1;
-  }
+  }*/
 
   span
   {
     display: block;
     font-weight: normal;
-    font-size: 14px;
     text-align: center;
     width: 100%;
-  }
+  }  
+}
+
+#nodes .item 
+{
+  background: #336699;
+  background-image: linear-gradient( to bottom, hsla(0, 1%, 0%, 0), hsla(0, 0%, 0%, 0.5) );
 
   span.address
   {    
     margin-top: 3px;
-    font-size: 13px;
+    font-size: 0.9em;
   }
 
   span.name
   {
-    font-size: 26px; 
+    font-size: 1.8em; 
     font-weight: bold;
   }
 
@@ -62,9 +85,72 @@
   }
 }
 
-.item:hover
+#nodes .item:hover
 {
   background-image: linear-gradient( to bottom, hsla(0, 0.5%, 0%, 0), hsla(-5%, -1%, 0%, 0.1) );
+}
+
+#systems .item 
+{
+  background: #777;
+  background-image: linear-gradient( to bottom, hsla(0, 1%, 0%, 0), hsla(0, 0%, 0%, 0.5) );
+
+  span.name
+  {
+    font-size: 1.8em; 
+    font-weight: bold;
+  }
+
+  span.max_robustness
+  {    
+    vertical-align: middle;
+    background: darkgreen;
+    font-size: 1.3em;
+    font-weight: bold;
+    border-radius: 20%;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    right: 7%;
+    top: 14%;
+    padding: 7px;
+  }
+
+  span.label
+  {
+    color: #999;
+    width: 100%;
+    height: 20%;
+    margin: -4px 0 0 0;
+    font-size: 1.1em;
+    font-weight: normal;
+  }
+
+  span.label-primary
+  {
+    background: none;
+  }
+
+  span.badge
+  {
+    font-size: 1.3em;
+    font-weight: bold;
+    border-radius: 20%;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 7%;
+    top: 14%;
+    padding: 10px;
+  }
+
+  span.user_capacity
+  {
+    font-size: 1.4em;
+    position: absolute;
+    bottom: 10%;
+    left: 0px;
+  }
 }
 
 .item.selected {
