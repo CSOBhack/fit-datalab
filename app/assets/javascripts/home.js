@@ -1,14 +1,14 @@
 
-$(document).ready(function() {
-  navigator.geolocation.getCurrentPosition(initialize);
-});
+(function() {
+  var $;
 
+  $ = jQuery;
 
-function initialize(location) {
-  //console.log(location);
+ $.mapInit = function initialize() {
+
   var mapOptions = {
-      center: new google.maps.LatLng(location.coords.latitude, location.coords.longitude),
-      zoom: 8
+      center: new google.maps.LatLng(50.0018876,15.6641636),
+      zoom: 7
   };
     var map = new google.maps.Map(document.getElementById("map"), mapOptions);
     $.ajax({
@@ -21,7 +21,7 @@ function initialize(location) {
 }
 
 function addNodeMarker(node, map){
-    console.log('Adding',node)
+    //console.log('Adding',node)
     var myLatLng = new google.maps.LatLng(node.venue_lat, node.venue_long);
     var marker = new google.maps.Marker({
         position: myLatLng,
@@ -46,4 +46,4 @@ function addNodeMarker(node, map){
     });
 
 }
-
+}).call(this);

@@ -1,4 +1,7 @@
-%h1 Hello Hackaton!
-
 %div{:style => "width: 800px;"}
   #map{:style => "width: 800px; height: 400px;"}
+:javascript
+  $(document).ready(function() {
+    //google.maps.event.addDomListener(window, "load", initialize);
+    $.mapInit();
+  });
