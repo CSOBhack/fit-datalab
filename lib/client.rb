@@ -22,6 +22,15 @@ module Hack
       JSON.parse(r.body)['_embedded']['nodes']
     end
 
+    def hackers
+      r = self.class.get(@base_uri + 'hackers', query: {})
+      JSON.parse(r.body)['_embedded']['actors']
+    end
+
+    def actors
+      r = self.class.get(@base_uri + 'actors', query: {})
+      JSON.parse(r.body)['_embedded']['actors']
+    end
 
   end
 end

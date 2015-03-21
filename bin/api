@@ -14,7 +14,7 @@ program :description, 'CLI for api query'
 
 command :systems do |c|
   c.syntax = 'api systems'
-  c.description = 'Displays all ID from DB'
+  c.description = 'Displays all systems'
 
   c.action do |args, options|
     res = client.systems
@@ -24,10 +24,41 @@ end
 
 command :nodes do |c|
   c.syntax = 'api nodes'
-  c.description = 'Displays all ID from DB'
+  c.description = 'Displays all nodes'
 
   c.action do |args, options|
     res = client.nodes
+    puts JSON.pretty_generate(res)
+  end
+end
+
+command :events do |c|
+  c.syntax = 'api events'
+  c.description = 'Displays all events'
+
+  c.action do |args, options|
+    res = client.events
+    puts JSON.pretty_generate(res)
+  end
+end
+
+
+command :actors do |c|
+  c.syntax = 'api actors'
+  c.description = 'Displays all actors'
+
+  c.action do |args, options|
+    res = client.actors
+    puts JSON.pretty_generate(res)
+  end
+end
+
+command :hackers do |c|
+  c.syntax = 'api hackers'
+  c.description = 'Displays all hackers'
+
+  c.action do |args, options|
+    res = client.hackers
     puts JSON.pretty_generate(res)
   end
 end

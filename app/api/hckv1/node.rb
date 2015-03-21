@@ -19,7 +19,19 @@ module Hckv1
       get '/' do
         client.nodes
       end
-
     end
+
+    get '/events' do
+      client.events
+    end
+
+    get '/hackers' do
+      client.hackers
+    end
+
+    get '/actors' do
+      client.actors
+    end
+
   end
 end
