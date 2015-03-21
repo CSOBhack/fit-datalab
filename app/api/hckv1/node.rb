@@ -21,14 +21,16 @@ module Hckv1
       end
     end
 
-    resource 'events' do
-      params do
-        optional :limit, default: 20, type: Integer
-        optional :offset, default: 0, type: Integer
-      end
-      get '/' do
-        client.events
-      end
+    get '/events' do
+      client.events
+    end
+
+    get '/hackers' do
+      client.hackers
+    end
+
+    get '/actors' do
+      client.actors
     end
 
   end

@@ -41,3 +41,24 @@ command :events do |c|
     puts JSON.pretty_generate(res)
   end
 end
+
+
+command :actors do |c|
+  c.syntax = 'api actors'
+  c.description = 'Displays all actors'
+
+  c.action do |args, options|
+    res = client.actors
+    puts JSON.pretty_generate(res)
+  end
+end
+
+command :hackers do |c|
+  c.syntax = 'api hackers'
+  c.description = 'Displays all hackers'
+
+  c.action do |args, options|
+    res = client.hackers
+    puts JSON.pretty_generate(res)
+  end
+end
