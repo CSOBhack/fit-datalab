@@ -19,5 +19,11 @@ module Hack
       JSON.parse(r.body)['_embedded']
     end
 
+    def nodes
+      r = self.class.get(@base_uri + 'nodes', query: {})
+      JSON.parse(r.body)['_embedded']
+    end
+
+
   end
 end

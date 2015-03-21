@@ -13,11 +13,21 @@ program :version, '0.0.1'
 program :description, 'CLI for api query'
 
 command :systems do |c|
-  c.syntax = 'api list'
+  c.syntax = 'api systems'
   c.description = 'Displays all ID from DB'
 
   c.action do |args, options|
     res = client.systems
+    puts JSON.pretty_generate(res)
+  end
+end
+
+command :nodes do |c|
+  c.syntax = 'api nodes'
+  c.description = 'Displays all ID from DB'
+
+  c.action do |args, options|
+    res = client.nodes
     puts JSON.pretty_generate(res)
   end
 end
