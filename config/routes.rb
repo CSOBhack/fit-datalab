@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'nodes', to: 'home#nodes'
   get 'systems', to: 'home#systems'
+  get 'actors', to: 'home#actors'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

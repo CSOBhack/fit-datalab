@@ -3,15 +3,15 @@
 
   $ = jQuery;
   //current user identification
-  $.loadSystems = function(){
+  $.loadActors = function(){
     if(!$('#spinner').hasClass('loader')){
       $('#spinner').addClass('loader');
     }
-    var container = $("#systems");
+    var container = $("#actors");
     container.empty();
     $.ajax({
       type: "GET",
-      url: "/api/v1/systems/",
+      url: "/api/v1/actors/",
       context: this,
       success: function (data) {
          $('#spinner').removeClass('loader');
@@ -25,19 +25,18 @@
               .addClass('name')
               .text(this.name)
             ).append($(document.createElement('span'))
-              .addClass('max_robustness')
-              .text(this.max_robustness)
+              .addClass('points badge')
+              .text(this.current_action_points)
             ).append($(document.createElement('span'))
-              .addClass('user_capacity')
-              .text(this.user_capacity)
+              .addClass('goal')
+              .text(this.goal)
             ).append($(document.createElement('span'))
-              .addClass('type label label-primary')
-              .text(this.system_type_name)
+              .addClass('doing')
+              .text(this.doing)
             ).append($(document.createElement('span'))
-              .addClass('level badge')
-              .text(this.level)
+              .addClass('type').addClass(this.type == 'hacker' ? 'label-danger' : 'label-success')
+              .text(this.type)
             );
-            //console.log(this.venue_address);
             container.append(elem)
          });
       },
