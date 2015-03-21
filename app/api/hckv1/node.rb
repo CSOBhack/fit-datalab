@@ -1,10 +1,8 @@
 #!/bin/ruby
 require 'grape'
-LIB_PATH=File.expand_path('../../../lib', File.dirname(__FILE__))
-require_relative LIB_PATH + '/client'
 
 module Hckv1
-  class System < Grape::API
+  class Node < Grape::API
     helpers do
       def client
         @cl ||= begin
