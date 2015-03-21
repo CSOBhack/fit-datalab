@@ -10,9 +10,9 @@
     %span.icon-bar
   #bs-example-navbar-collapse-1.collapse.navbar-collapse
     %ul.nav.navbar-nav
-      %li.active
+      %li{:class => ('active' if current_page?(root_path))}
         %a{:href => "/"}
           CSOB Hackaton 2015
-      %li
+      %li{:class => ('active' if current_page?(nodes_path))}
         %a{:href => "/nodes"}
           nodes
