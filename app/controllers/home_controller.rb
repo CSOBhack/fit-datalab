@@ -4,4 +4,7 @@ class HomeController < ApplicationController
 
   def nodes
   end
+
+  def systems
+  end
 end
