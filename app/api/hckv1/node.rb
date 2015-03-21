@@ -19,7 +19,17 @@ module Hckv1
       get '/' do
         client.nodes
       end
-
     end
+
+    resource 'events' do
+      params do
+        optional :limit, default: 20, type: Integer
+        optional :offset, default: 0, type: Integer
+      end
+      get '/' do
+        client.events
+      end
+    end
+
   end
 end

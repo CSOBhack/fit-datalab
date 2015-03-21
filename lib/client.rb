@@ -22,6 +22,10 @@ module Hack
       JSON.parse(r.body)['_embedded']['nodes']
     end
 
+    def events
+      r = self.class.get(@base_uri + 'traffic', query: {})
+      JSON.parse(r.body)['_embedded']['events']
+    end
 
   end
 end
