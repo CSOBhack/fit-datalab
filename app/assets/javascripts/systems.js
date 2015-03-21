@@ -37,13 +37,22 @@
               .addClass('level badge')
               .text(this.level)
             );
-            //console.log(this.venue_address);
             container.append(elem)
          });
       },
       complete: function(){
         //set default sorting
-        container.isotope();
+        container.isotope({
+          itemSelector: '.item',
+          layoutMode: 'fitRows',
+           getSortData: {
+            name: '.name',
+            max_robustness: '.max_robustness parseInt',
+            user_capacity: '.user_capacity parseInt',
+            level: '.level parseInt'
+          }
+        });
+        $.initFilters(container);
       }
     });
   };

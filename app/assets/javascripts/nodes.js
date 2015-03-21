@@ -2,12 +2,12 @@
   var $;
 
   $ = jQuery;
-  //current user identification
   $.loadNodes = function loadNodes(){
     if(!$('#spinner').hasClass('loader')){
       $('#spinner').addClass('loader');
     }
-    $("#nodes").empty();
+    var container = $("#nodes");
+    container.empty();
     $.ajax({
       type: "GET",
       url: "/api/v1/nodes/",
@@ -30,13 +30,20 @@
               .addClass('address')
               .text(this.venue_address)
             );
-                    console.log(this.venue_address);
-            $("#nodes").append(elem)
+            container.append(elem)
          });
       },
       complete: function(){
         //set default sorting
-        $("#nodes").isotope();
+        container.isotope({
+          itemSelector: '.item',
+          layoutMode: 'fitRows',
+           getSortData: {
+            name: '.name',
+          }
+        });
+        $.initFilters(container);
+        container.isotope({ sortBy: 'name'});
       }
     });
   };

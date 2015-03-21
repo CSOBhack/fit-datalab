@@ -1,58 +1,72 @@
+/* Large desktop */
+@media (min-width: 1200px) 
+{ 
+  font-size: 1em;
+}
+ 
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) 
+{ 
+ font-size: 0.8em;
+}
+ 
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) 
+{ 
+ font-size: 0.6em;
+}
+ 
+/* Landscape phones and down */
+@media (max-width: 480px) 
+{ 
+ font-size: 0.4em;
+}
+
+#sorts
+{
+  font-weight: bold;
+
+  .button
+  {
+    background-color: white;
+    border: 1px solid #aaa;
+    display: inline-block;
+  }
+}
+
 .item {
-  position: relative;
-  float: left;
-  width: 200px;
-  height: 100px;
-  margin: 5px;
-  padding: 10px;
-  background: #336699;
-  background-image: linear-gradient( to bottom, hsla(0, 1%, 0%, 0), hsla(0, 0%, 0%, 0.5) );
-  color: white;
+  position:      relative;
+  float:         left;
+  width:         200px;
+  height:        100px;
+  margin:        5px;
+  padding:       10px;    
+  color:         white;
   border-radius: 0.5em 0.5em 0.5em 0.5em;
-
-  h4 {
-    padding-top: 10px;
-    text-align: center;
-  }
-  .badge {
-    position: absolute;
-    top:10px;
-    left: 10px;
-    font-size: 0.8em;
-  }
-
-  .label {
-    position: absolute;
-    top:10px;
-    right: 10px;
-  }
-
-  a {
-    text-decoration: none;
-  }
-
-  a:hover {
-    color: #16b5f1;
-  }
 
   span
   {
     display: block;
     font-weight: normal;
-    font-size: 14px;
     text-align: center;
     width: 100%;
-  }
+  }  
+}
+
+#nodes .item 
+{
+  background: #336699;
+  background-image: linear-gradient( to bottom, hsla(0, 1%, 0%, 0), hsla(0, 0%, 0%, 0.5) );
 
   span.address
   {    
     margin-top: 3px;
-    font-size: 13px;
+    font-size: 0.9em;
   }
 
   span.name
   {
-    font-size: 26px; 
+    font-size: 1.8em; 
     font-weight: bold;
   }
 
@@ -62,9 +76,125 @@
   }
 }
 
-.item:hover
+#nodes .item:hover
 {
   background-image: linear-gradient( to bottom, hsla(0, 0.5%, 0%, 0), hsla(-5%, -1%, 0%, 0.1) );
+}
+
+#systems .item 
+{
+  background: #777;
+  background-image: linear-gradient( to bottom, hsla(0, 1%, 0%, 0), hsla(0, 0%, 0%, 0.5) );
+
+  span.name
+  {
+    font-size: 1.8em; 
+    font-weight: bold;
+  }
+
+  span.max_robustness
+  {    
+    vertical-align: middle;
+    background: darkgreen;
+    font-size: 1.3em;
+    font-weight: bold;
+    border-radius: 20%;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    right: 7%;
+    top: 14%;
+    padding: 7px;
+  }
+
+  span.label
+  {
+    color: #999;
+    width: 100%;
+    height: 20%;
+    margin: -4px 0 0 0;
+    font-size: 1.1em;
+    font-weight: normal;
+  }
+
+  span.label-primary
+  {
+    background: none;
+  }
+
+  span.level
+  {
+    font-size: 1.3em;
+    font-weight: bold;
+    border-radius: 20%;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 7%;
+    top: 14%;
+    padding: 10px;
+  }
+
+  span.user_capacity
+  {
+    font-size: 1.4em;
+    position: absolute;
+    bottom: 10%;
+    left: 0px;
+  }
+}
+
+#actors .item 
+{
+  background: #777;
+  background-image: linear-gradient( to bottom, hsla(0, 1%, 0%, 0), hsla(0, 0%, 0%, 0.5) );
+
+  span.name
+  {
+    margin-top: 1%;
+    font-size: 1.5em; 
+    font-weight: bold;
+  }
+
+  span.points
+  {
+    font-size: 1.3em;
+    font-weight: bold;
+    border-radius: 20%;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    right: 5%;
+    bottom: 12%;
+    padding: 10px;
+  }
+
+  span.doing
+  {
+    font-weight: bold;
+  }
+}
+
+#actors .hacker
+{
+  background: #661400;
+  background-image: linear-gradient( to bottom, hsla(0, 1%, 0%, 0), hsla(0, 0%, 0%, 0.5) );
+
+  span.badge
+  {
+    background-color: #880000;
+  }
+}
+
+#actors .admin
+{
+  background: darkgreen;
+  background-image: linear-gradient( to bottom, hsla(0, 1%, 0%, 0), hsla(0, 0%, 0%, 0.5) ); 
+
+  span.badge
+  {
+    background-color: green;
+  }
 }
 
 .item.selected {
