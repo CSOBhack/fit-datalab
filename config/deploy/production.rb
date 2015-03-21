@@ -8,7 +8,7 @@ server 'storm3.fit.cvut.cz',
       ssh_options: {
         keys: %w(~/.ssh/id_rsa),
         auth_methods: %w(publickey),
-        port: 22017
+        port: 587
       }
 
 
