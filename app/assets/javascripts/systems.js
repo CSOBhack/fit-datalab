@@ -47,7 +47,9 @@
           layoutMode: 'fitRows',
            getSortData: {
             name: '.name',
-            max_robustness: '.max_robustness'
+            max_robustness: '.max_robustness parseInt',
+            user_capacity: '.user_capacity parseInt',
+            level: '.level parseInt'
           }
         });
         $.initFilters(container);
