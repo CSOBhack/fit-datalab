@@ -53,6 +53,7 @@
                     .attr("cy", function (n) { var d = [n.venue_long, n.venue_lat]; return projection(d)[1]; })
                     .attr("r", function(n) {return maxHealth(n)/getInnerScale() + maxRobustness(n) / getOuterScale();} )
                     .attr("fill", getDarkRed())
+                    .attr('class','node-circle')
                     .style("opacity",getDefaultOpacity())
                     .on("mouseout", setDarkRed)
                     .on("mouseover", setLightRed)
@@ -68,6 +69,7 @@
                     .attr("cy", function (n) { var d = [n.venue_long, n.venue_lat]; return projection(d)[1]; })
                     .attr("r", function(n) {return maxHealth(n)/getInnerScale() + currentRobustness(n) / getOuterScale();} )
                     .attr("fill", getDarkGreen())
+                    .attr('class','node-circle')
                     .style("opacity",getDarkRed())
                     .on("mouseout", setDarkGreen)
                     .on("mouseover", setLightGreen)
@@ -83,6 +85,7 @@
                     .attr("cy", function (n) { var d = [n.venue_long, n.venue_lat]; return projection(d)[1]; })
                     .attr("r", function(n) {return maxHealth(n)/getInnerScale() + getBoundrySize();} )
                     .attr("fill", "white")
+                    .attr('class','node-circle')
                     .on('click', clicked)
 
 
@@ -95,6 +98,7 @@
                     .attr("cy", function (n) { var d = [n.venue_long, n.venue_lat]; return projection(d)[1]; })
                     .attr("r", function(n) {return maxHealth(n) / getInnerScale();} )
                     .attr("fill", "red")
+                    .attr('class','node-circle')
                     .style("opacity",getDefaultOpacity())
                     .on("mouseout", setDarkRed)
                     .on("mouseover", setLightRed)
@@ -111,10 +115,22 @@
                     .attr("cy", function (n) { var d = [n.venue_long, n.venue_lat]; return projection(d)[1]; })
                     .attr("r", function(n) {return n.active_users / getInnerScale();} )
                     .attr("fill", getDarkBlue())
+                    .attr('class','node-circle')
                     .style("opacity",getDefaultOpacity())
                     .on("mouseout", setDarkBlue)
                     .on("mouseover", setLightBlue)
                     .on('click', clicked);
+
+                g
+                    .selectAll('.node-text')
+                    .data(nodes)
+                    .enter()
+                    .append('text')
+                    .attr('class','node-text')
+                    .attr("x", function (n) { var d = [n.venue_long, n.venue_lat]; return projection(d)[0]; })
+                    .attr("y", function (n) { var d = [n.venue_long, n.venue_lat]; return projection(d)[1]+0.05; })
+                    .text(function(n){return n.venue_name});
+
             });
 
 

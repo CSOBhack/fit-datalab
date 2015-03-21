@@ -36,7 +36,17 @@ gem 'grape'
 
 gem 'httparty'
 gem 'hashie'
+
+# CLI
 gem 'commander'
+gem 'ruby-progressbar'
+
+# redis
+# object redis mapping
+gem 'ohm'
+gem 'ohm-contrib'
+# full-text search
+gem 'ion', git: 'https://github.com/deric/ion.git'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

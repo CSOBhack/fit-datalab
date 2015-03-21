@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/deric/ion.git
+  revision: 261b588886fb44c13431fe2db3fdaac25b32c63a
+  specs:
+    ion (0.0.2)
+      nest (~> 1.0)
+      redis (~> 2.1)
+      text (~> 0.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -112,6 +121,7 @@ GEM
     hashie (3.4.0)
     highline (1.6.21)
     hike (1.2.3)
+    hiredis (0.6.0)
     html2haml (2.0.0)
       erubis (~> 2.7.0)
       haml (~> 4.0.0)
@@ -138,13 +148,24 @@ GEM
     mime-types (2.4.3)
     mini_portile (0.6.2)
     minitest (5.5.1)
+    msgpack (0.5.11)
     multi_json (1.11.0)
     multi_xml (0.5.5)
+    nest (1.1.2)
+      redis
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.2)
+    nido (0.0.1)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
+    ohm (2.2.0)
+      msgpack
+      nido
+      redic
+      stal
+    ohm-contrib (2.2.0)
+      ohm (~> 2.2)
     rack (1.6.0)
     rack-accept (0.4.5)
       rack (>= 0.4)
@@ -179,6 +200,9 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
+    redic (1.4.1)
+      hiredis
+    redis (2.2.2)
     ref (1.0.5)
     rspec-core (3.2.2)
       rspec-support (~> 3.2.0)
@@ -197,6 +221,7 @@ GEM
       rspec-mocks (~> 3.2.0)
       rspec-support (~> 3.2.0)
     rspec-support (3.2.2)
+    ruby-progressbar (1.7.1)
     ruby_parser (3.6.5)
       sexp_processor (~> 4.1)
     sass (3.4.13)
@@ -225,6 +250,9 @@ GEM
       colorize (>= 0.7.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    stal (0.1.0)
+      redic
+    text (0.2.0)
     therubyracer (0.12.1)
       libv8 (~> 3.16.14.0)
       ref
@@ -265,10 +293,14 @@ DEPENDENCIES
   haml-rails
   hashie
   httparty
+  ion!
   jbuilder (~> 2.0)
   jquery-rails
+  ohm
+  ohm-contrib
   rails (= 4.2.1)
   rspec-rails
+  ruby-progressbar
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring
