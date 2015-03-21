@@ -98,14 +98,14 @@
         bgPath
             .datum(allMax)
             .attr("class", "timeline-bg")
-            .attr("d", area).attr('fill', '#dd0000')
+            .attr("d", area).attr('fill', '#ac1414')
             .on('click', function () {
                 console.log('naow');
             })
         fgPath
             .datum(data)
             .attr("class", "timeline-area")
-            .attr("d", area).attr('fill', '#00ff00');
+            .attr("d", area).attr('fill', '#008600');
 
         addedAxis.call(xAxis);
 

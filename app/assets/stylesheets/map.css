@@ -19,6 +19,22 @@
 .node-circle {
     cursor: pointer;
 }
+.node-text-stroke {
+    font-size: 0.1px;
+    color: white;
+    font-weight: bold;
+    text-anchor: middle;
+    pointer-events: none;
+
+}
+.node-text {
+    font-size: 0.05px;
+    fill: white;
+    font-weight: bold;
+    text-anchor: middle;
+    pointer-events: none;
+
+}
 .map-back {
     font-size: 14px;
     font-weight: bold;
