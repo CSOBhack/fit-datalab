@@ -18,7 +18,8 @@
             //console.log(this.title);
             var elem = $(document.createElement('div'))
                     .addClass('col-xs-4 col-sm-3 item')
-                    .attr('id', 's'+this.id);
+                    .attr('id', 's'+this.id)
+                    .addClass(this.type);
 
             elem.append($(document.createElement('span'))
               .addClass('name')
@@ -32,9 +33,6 @@
             ).append($(document.createElement('span'))
               .addClass('doing')
               .text(this.doing)
-            ).append($(document.createElement('span'))
-              .addClass('type').addClass(this.type == 'hacker' ? 'label-danger' : 'label-success')
-              .text(this.type)
             );
             container.append(elem)
          });
