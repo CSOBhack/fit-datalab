@@ -10,7 +10,6 @@
     $("#nodes").empty();
     $.ajax({
       type: "GET",
-      //TODO: fetch userID from somewhere
       url: "/api/v1/nodes/",
       context: this,
       success: function (data) {
@@ -19,15 +18,25 @@
             //console.log(this.title);
             var elem = $(document.createElement('div'))
                     .addClass('col-xs-4 col-sm-3 item')
-                    .attr('id', '')
-                    .text(this.ip_address);
+                    .attr('id', 'n'+this.id);
 
+            elem.append($(document.createElement('span'))
+              .addClass('ip')
+              .text(this.ip_address)
+            ).append($(document.createElement('span'))
+              .addClass('name')
+              .text(this.venue_name)
+            ).append($(document.createElement('span'))
+              .addClass('address')
+              .text(this.venue_address)
+            );
+                    console.log(this.venue_address);
             $("#nodes").append(elem)
          });
       },
       complete: function(){
         //set default sorting
-        //$('#results').isotope({ sortBy: ['seen', 'name']});
+        $("#nodes").isotope();
       }
     });
   };
