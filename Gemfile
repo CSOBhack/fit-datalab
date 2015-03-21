@@ -36,7 +36,10 @@ gem 'grape'
 
 gem 'httparty'
 gem 'hashie'
+
+# CLI
 gem 'commander'
+gem 'ruby-progressbar'
 
 # redis
 # object redis mapping
