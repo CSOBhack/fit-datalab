@@ -1,7 +1,13 @@
-%div{:style => "width: 800px;"}
-  #map
+.row
+  .col-xs-12
+    #timeline
+.row
+  .col-xs-12
+    #map
 :javascript
   $(document).ready(function() {
     //google.maps.event.addDomListener(window, "load", initialize);
+    $.plotInit();
     $.mapInit();
+
   });

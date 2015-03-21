@@ -3,19 +3,14 @@
 
     $ = jQuery;
 
+
+
+
     $.mapInit = function () {
-        var width = 800,
+        var width = $('#map').width(),
             height = 400;
 
         var projection = d3.geo.mercator()
-            .translate([-700*1.5, 2700*1.5])
-            .scale(width / 2 / Math.PI * 22*1.5);
-
-        var zoom = d3.behavior.zoom()
-            .scaleExtent([1, 50])
-            .scale(1.5)
-            .on("zoom", move);
-
         var path = d3.geo.path()
             .projection(projection);
 
@@ -23,44 +18,192 @@
             .attr("width", width)
             .attr("height", height)
             .append("g")
-            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
-            .call(zoom);
+            //.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
 
-        var g = svg.append("g");
-        var czk = g.append('g')
-            .attr("transform", "translate(-34.5,128)");
-        svg.append("rect")
-            .attr("class", "overlay")
-            .attr("x", -width / 2)
-            .attr("y", -height / 2)
-            .attr("width", width)
-            .attr("height", height);
-        svg.call(zoom.event);
+        var g = svg.append('g');
+        var labels = svg.append('g');
+        var back = labels.append('text')
+            .text('< click the background to go back')
+            .attr('class','map-back none')
+            .attr('x', 20)
+            .attr('y', height-20)
+
         d3.json("/assets/map.json", function (error, map) {
             if (error) return console.error(error);
-            czk.append("path")
-                .datum(topojson.feature(map, map.objects.cze)).attr('class', 'land')
-                .attr("d", path);
+            var topo = topojson.feature(map, map.objects.cze);
+            reset(topo);
+            g.append("path")
+                .datum(topo).attr('class', 'land')
+                .attr("d", path)
+                .on('click',reset)
 
             $.ajax({
                 'url': '/api/v1/nodes'
             }).success(function (nodes) {
-                czk
-                    .selectAll('circle')
+
+
+
+
+                g
+                    .selectAll('maxRobustness')
                     .data(nodes)
                     .enter()
                     .append('circle')
                     .attr("cx", function (n) { var d = [n.venue_long, n.venue_lat]; return projection(d)[0]; })
                     .attr("cy", function (n) { var d = [n.venue_long, n.venue_lat]; return projection(d)[1]; })
-                    .attr("r", "3px")
+                    .attr("r", function(n) {return maxHealth(n)/getInnerScale() + maxRobustness(n) / getOuterScale();} )
                     .attr("fill", "red")
+                    .style("opacity",getDefaultOpacity())
+                    .on("mouseout", setLoweropacity)
+                    .on("mouseover", setMaxOpacity)
+                    .on('click', clicked)
+
+
+                g
+                    .selectAll('currentRobustness')
+                    .data(nodes)
+                    .enter()
+                    .append('circle')
+                    .attr("cx", function (n) { var d = [n.venue_long, n.venue_lat]; return projection(d)[0]; })
+                    .attr("cy", function (n) { var d = [n.venue_long, n.venue_lat]; return projection(d)[1]; })
+                    .attr("r", function(n) {return maxHealth(n)/getInnerScale() + currentRobustness(n) / getOuterScale();} )
+                    .attr("fill", "green")
+                    .style("opacity",getDefaultOpacity())
+                    .on("mouseout", setLoweropacity)
+                    .on("mouseover", setMaxOpacity)
+                    .on('click', clicked);
+
+
+                g
+                    .selectAll('boundry')
+                    .data(nodes)
+                    .enter()
+                    .append('circle')
+                    .attr("cx", function (n) { var d = [n.venue_long, n.venue_lat]; return projection(d)[0]; })
+                    .attr("cy", function (n) { var d = [n.venue_long, n.venue_lat]; return projection(d)[1]; })
+                    .attr("r", function(n) {return maxHealth(n)/getInnerScale() + getBoundrySize();} )
+                    .attr("fill", "white")
+                    .on('click', clicked)
+
+
+                g
+                    .selectAll('maxHealth')
+                    .data(nodes)
+                    .enter()
+                    .append('circle')
+                    .attr("cx", function (n) { var d = [n.venue_long, n.venue_lat]; return projection(d)[0]; })
+                    .attr("cy", function (n) { var d = [n.venue_long, n.venue_lat]; return projection(d)[1]; })
+                    .attr("r", function(n) {return maxHealth(n) / getInnerScale();} )
+                    .attr("fill", "red")
+                    .style("opacity",getDefaultOpacity())
+                    .on("mouseout", setLoweropacity)
+                    .on("mouseover", setMaxOpacity)
+                    .on('click', clicked);
+
+
+
+                g
+                    .selectAll('currentHealth')
+                    .data(nodes)
+                    .enter()
+                    .append('circle')
+                    .attr("cx", function (n) { var d = [n.venue_long, n.venue_lat]; return projection(d)[0]; })
+                    .attr("cy", function (n) { var d = [n.venue_long, n.venue_lat]; return projection(d)[1]; })
+                    .attr("r", function(n) {return n.active_users / getInnerScale();} )
+                    .attr("fill", "#00688B")
+                    .style("opacity",getDefaultOpacity())
+                    .on("mouseout", setLoweropacity)
+                    .on("mouseover", setMaxOpacity)
+                    .on('click', clicked);
             });
+
+
+
         });
+
+        function getDefaultOpacity() {
+            return 0.8;
+        }
+
+        function setLoweropacity() {
+            d3.select(this).transition()
+                .duration(200)
+                .style("opacity",getDefaultOpacity());
+        }
+
+        function setMaxOpacity() {
+            d3.select(this).transition()
+                .duration(200)
+                .style("opacity",1);
+        }
+
 
         function move() {
             g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
         }
 
+        function maxHealth(node) {
+            var sum = 0;
+            for(var i in node._embedded.layers) {
+                sum += node._embedded.layers[i].user_capacity;
+            }
+            return sum;
+        }
+
+        function maxRobustness(node) {
+            var sum = 0;
+            for(var i in node._embedded.layers) {
+                sum += node._embedded.layers[i].max_robustness;
+            }
+            return sum;
+        }
+
+        function currentRobustness(node) {
+            var sum = 0;
+            for(var i in node._embedded.layers) {
+                sum += node._embedded.layers[i].current_robustness;
+            }
+            return sum;
+        }
+        var ratio = 30;
+        function getInnerScale() {
+            return 40000*ratio;
+        }
+
+        function getOuterScale() {
+            return 50*ratio;
+        }
+
+        function getBoundrySize() {
+            return 1/ratio;
+        }
+
+        var active = d3.select(null);
+        function clicked(n) {
+            active.classed("active", false);
+            active = d3.select(this).classed("active", true);
+            var d = [n.venue_long, n.venue_lat];
+            var pos = projection(d);
+            var scale = 0.4 / (0.7/height),
+                translate = [width / 2  - scale * pos[0], height / 2  - scale * pos[1]];
+
+            back.classed('none', false);
+            g.transition().duration(500).attr("transform", "translate(" + translate + ")scale(" + scale + ")");
+        }
+        var first = true;
+        function reset(d){
+            var bounds = path.bounds(d),
+                dx = bounds[1][0] - bounds[0][0],
+                dy = bounds[1][1] - bounds[0][1],
+                x = (bounds[0][0] + bounds[1][0]) / 2,
+                y = (bounds[0][1] + bounds[1][1]) / 2,
+                scale = .9 / Math.max(dx / width, dy / height),
+                translate = [width / 2 - scale * x, height / 2 - scale * y];
+
+            g.transition().duration(first ? 0 : 500).attr("transform", "translate(" + translate + ")scale(" + scale + ")");
+            first = false;
+            back.classed('none', true);
+        }
 
     }
 

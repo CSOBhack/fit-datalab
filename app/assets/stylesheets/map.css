@@ -16,3 +16,20 @@
 #map {
     border: 1px solid #999;
 }
+.node-circle {
+    cursor: pointer;
+}
+.map-back {
+    font-size: 14px;
+    font-weight: bold;
+    fill: #666;
+}
+.none {
+    display: none;
+}
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
