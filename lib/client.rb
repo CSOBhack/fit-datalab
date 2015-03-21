@@ -1,5 +1,3 @@
-require 'securerandom'
-require 'digest/hmac'
 require 'httparty'
 require 'net/https'
 require 'uri'
