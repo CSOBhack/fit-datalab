@@ -18,6 +18,6 @@ command :systems do |c|
 
   c.action do |args, options|
     res = client.systems
-    puts JSON.pretty_generate(res['_embedded'])
+    puts JSON.pretty_generate(res)
   end
 end

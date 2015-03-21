@@ -16,7 +16,7 @@ module Hack
 
     def systems
       r = self.class.get(@base_uri + 'systems', query: {})
-      JSON.parse(r.body)
+      JSON.parse(r.body)['_embedded']
     end
 
   end
