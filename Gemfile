@@ -34,6 +34,10 @@ gem 'bootswatch-rails'
 # simple REST API
 gem 'grape'
 
+gem 'httparty'
+gem 'hashie'
+gem 'commander'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

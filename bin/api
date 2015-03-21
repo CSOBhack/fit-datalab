@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+require_relative File.expand_path('../lib', File.dirname(__FILE__)) + '/client'
+require 'hashie'
+require 'rubygems'
+require 'commander/import'
+
+def client
+  @cl ||= Hack::Client.new
+end
+
+program :name, 'hack api'
+program :version, '0.0.1'
+program :description, 'CLI for api query'
+
+command :systems do |c|
+  c.syntax = 'api list'
+  c.description = 'Displays all ID from DB'
+
+  c.action do |args, options|
+    res = client.systems
+    puts JSON.pretty_generate(res['_embedded'])
+  end
+end
