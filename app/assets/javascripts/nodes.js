@@ -43,6 +43,7 @@
           }
         });
         $.initFilters(container);
+        container.isotope({ sortBy: 'name'});
       }
     });
   };
