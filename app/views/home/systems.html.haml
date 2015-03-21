@@ -1,4 +1,12 @@
 .container
+  .col-md-2.ui-group
+    .sort-by.button-group#sorts
+      Sort by:
+      %button.button{"data-sort-by" => "name"}
+        %span.glyphicon.glyphicon-sort-by-alphabet
+      %button.button{"data-sort-by" => "max_robustness"} max robustness
+      %button.button{"data-sort-by" => "user_capacity"} user capacity
+.container
   #spinner
   #systems
 :javascript

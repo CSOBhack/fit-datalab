@@ -2,7 +2,6 @@
   var $;
 
   $ = jQuery;
-  //current user identification
   $.loadNodes = function loadNodes(){
     if(!$('#spinner').hasClass('loader')){
       $('#spinner').addClass('loader');

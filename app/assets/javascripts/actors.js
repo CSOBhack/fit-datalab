@@ -2,7 +2,6 @@
   var $;
 
   $ = jQuery;
-  //current user identification
   $.loadActors = function(){
     if(!$('#spinner').hasClass('loader')){
       $('#spinner').addClass('loader');
