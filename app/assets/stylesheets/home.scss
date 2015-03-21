@@ -1,4 +1,3 @@
-
 .item {
   position: relative;
   float: left;
@@ -6,9 +5,9 @@
   height: 100px;
   margin: 5px;
   padding: 10px;
-  background: #eee;
-  background-image: linear-gradient( to bottom, hsla(0, 1%, 0%, 0), hsla(0, 0%, 0%, 0.2) );
-  color: #262524;
+  background: #336699;
+  background-image: linear-gradient( to bottom, hsla(0, 1%, 0%, 0), hsla(0, 0%, 0%, 0.5) );
+  color: white;
   border-radius: 0.5em 0.5em 0.5em 0.5em;
 
   h4 {
@@ -28,17 +27,6 @@
     right: 10px;
   }
 
-  .name {
-    position: absolute;
-
-    left: 10px;
-    top: 60px;
-    text-transform: none;
-    letter-spacing: 0;
-    font-size: 12px;
-    font-weight: normal;
-  }
-
   a {
     text-decoration: none;
   }
@@ -46,6 +34,37 @@
   a:hover {
     color: #16b5f1;
   }
+
+  span
+  {
+    display: block;
+    font-weight: normal;
+    font-size: 14px;
+    text-align: center;
+    width: 100%;
+  }
+
+  span.address
+  {    
+    margin-top: 3px;
+    font-size: 13px;
+  }
+
+  span.name
+  {
+    font-size: 26px; 
+    font-weight: bold;
+  }
+
+  span.ip
+  {
+    font-weight: bold;
+  }
+}
+
+.item:hover
+{
+  background-image: linear-gradient( to bottom, hsla(0, 0.5%, 0%, 0), hsla(-5%, -1%, 0%, 0.1) );
 }
 
 .item.selected {
