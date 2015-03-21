@@ -52,10 +52,10 @@
                     .attr("cx", function (n) { var d = [n.venue_long, n.venue_lat]; return projection(d)[0]; })
                     .attr("cy", function (n) { var d = [n.venue_long, n.venue_lat]; return projection(d)[1]; })
                     .attr("r", function(n) {return maxHealth(n)/getInnerScale() + maxRobustness(n) / getOuterScale();} )
-                    .attr("fill", "red")
+                    .attr("fill", getDarkRed())
                     .style("opacity",getDefaultOpacity())
-                    .on("mouseout", setLoweropacity)
-                    .on("mouseover", setMaxOpacity)
+                    .on("mouseout", setDarkRed)
+                    .on("mouseover", setLightRed)
                     .on('click', clicked)
 
 
@@ -67,10 +67,10 @@
                     .attr("cx", function (n) { var d = [n.venue_long, n.venue_lat]; return projection(d)[0]; })
                     .attr("cy", function (n) { var d = [n.venue_long, n.venue_lat]; return projection(d)[1]; })
                     .attr("r", function(n) {return maxHealth(n)/getInnerScale() + currentRobustness(n) / getOuterScale();} )
-                    .attr("fill", "green")
-                    .style("opacity",getDefaultOpacity())
-                    .on("mouseout", setLoweropacity)
-                    .on("mouseover", setMaxOpacity)
+                    .attr("fill", getDarkGreen())
+                    .style("opacity",getDarkRed())
+                    .on("mouseout", setDarkGreen)
+                    .on("mouseover", setLightGreen)
                     .on('click', clicked);
 
 
@@ -96,8 +96,8 @@
                     .attr("r", function(n) {return maxHealth(n) / getInnerScale();} )
                     .attr("fill", "red")
                     .style("opacity",getDefaultOpacity())
-                    .on("mouseout", setLoweropacity)
-                    .on("mouseover", setMaxOpacity)
+                    .on("mouseout", setDarkRed)
+                    .on("mouseover", setLightRed)
                     .on('click', clicked);
 
 
@@ -110,10 +110,10 @@
                     .attr("cx", function (n) { var d = [n.venue_long, n.venue_lat]; return projection(d)[0]; })
                     .attr("cy", function (n) { var d = [n.venue_long, n.venue_lat]; return projection(d)[1]; })
                     .attr("r", function(n) {return n.active_users / getInnerScale();} )
-                    .attr("fill", "#00688B")
+                    .attr("fill", getDarkBlue())
                     .style("opacity",getDefaultOpacity())
-                    .on("mouseout", setLoweropacity)
-                    .on("mouseover", setMaxOpacity)
+                    .on("mouseout", setDarkBlue)
+                    .on("mouseover", setLightBlue)
                     .on('click', clicked);
             });
 
@@ -122,7 +122,32 @@
         });
 
         function getDefaultOpacity() {
-            return 0.8;
+            return 0.9;
+        }
+
+        function setLightBlue() {
+            d3.select(this).transition()
+                .duration(200)
+                .style("fill","#1C86EE");
+        }
+
+        function setDarkBlue() {
+            d3.select(this).transition()
+                .duration(200)
+                .style("fill", getDarkBlue());
+        }
+
+        function setDarkGreen() {
+            d3.select(this).transition()
+                .duration(200)
+                .style("fill", getDarkGreen());
+        }
+
+
+        function setLightGreen() {
+            d3.select(this).transition()
+                .duration(200)
+                .style("fill","#00B200");
         }
 
         function setLoweropacity() {
@@ -135,6 +160,33 @@
             d3.select(this).transition()
                 .duration(200)
                 .style("opacity",1);
+        }
+
+        function setDarkRed() {
+            d3.select(this).transition()
+                .duration(200)
+                .style("fill", getDarkRed());
+        }
+
+
+        function setLightRed() {
+            d3.select(this).transition()
+                .duration(200)
+                .style("fill","#ff0000");
+        }
+
+        function getDarkRed() {
+            return "#990000";
+
+        }
+
+        function getDarkBlue() {
+            return "#104E8B";
+
+        }
+
+        function getDarkGreen() {
+            return "#007f00";
         }
 
 
@@ -175,7 +227,7 @@
         }
 
         function getBoundrySize() {
-            return 1/ratio;
+            return 0.5/ratio;
         }
 
         var active = d3.select(null);
