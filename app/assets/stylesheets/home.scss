@@ -1,7 +1,7 @@
 /* Large desktop */
 @media (min-width: 1200px) 
 { 
-  font-size: 1em;
+  font-size: 1em;  
 }
  
 /* Portrait tablet to landscape and desktop */
@@ -25,12 +25,38 @@
 #sorts
 {
   font-weight: bold;
+  display: inline-block;
+  clear: both;
+  height: 40px;
+  margin: 10px;
 
   .button
   {
-    background-color: white;
-    border: 1px solid #aaa;
-    display: inline-block;
+    border: 0px solid #aaa;
+    display: inline-block; 
+    color: #fff;
+    border-radius: 0;
+    
+    padding: 0.8em 1.5em;
+    margin: 0;
+
+    background-color: #444;
+    background-image: linear-gradient( to bottom, hsla(0, 1%, 0%, 0), hsla(0, 0%, 0%, 0.5) );   
+  }
+
+  .button:last-child
+  {
+    border-radius: 0 0.5em 0.5em 0;
+  }
+
+  .button:first-child
+  {
+    border-radius: 0.5em 0 0 0.5em;
+  }
+
+  .button.selected
+  {
+    background-color: #ccc;
   }
 }
 
@@ -60,13 +86,14 @@
 
   span.address
   {    
-    margin-top: 3px;
+    margin-top: 0.3em;
     font-size: 0.9em;
   }
 
   span.name
   {
-    font-size: 1.8em; 
+    margin-top: 0.2em;
+    font-size: 1.5em; 
     font-weight: bold;
   }
 
@@ -76,9 +103,10 @@
   }
 }
 
+#actors .item:hover,
 #nodes .item:hover
 {
-  background-image: linear-gradient( to bottom, hsla(0, 0.5%, 0%, 0), hsla(-5%, -1%, 0%, 0.1) );
+  background-image: linear-gradient( to bottom, hsla(0, 0.005%, 0%, 0), hsla(-0.005%, -0.01%, 0%, 0.01) );
 }
 
 #systems .item 
@@ -102,8 +130,8 @@
     width: 40px;
     height: 40px;
     position: absolute;
-    right: 7%;
-    top: 14%;
+    right: 5%;
+    top: 12%;
     padding: 7px;
   }
 
@@ -130,8 +158,8 @@
     width: 40px;
     height: 40px;
     position: absolute;
-    left: 7%;
-    top: 14%;
+    left: 5%;
+    top: 12%;
     padding: 10px;
   }
 

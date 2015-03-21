@@ -2,7 +2,7 @@
 require 'grape'
 
 module Hckv1
-  class Node < Grape::API
+  class Nodes < Grape::API
     helpers do
       def client
         @cl ||= begin
