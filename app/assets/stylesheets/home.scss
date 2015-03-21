@@ -1,21 +1,25 @@
-.col-xs-4
-{
-  font-size: 0.8em;
-
-  span 
-  {
-    margin-bottom: 8px;
-  }
-}
-
-.col-sm-3
-{
+/* Large desktop */
+@media (min-width: 1200px) 
+{ 
   font-size: 1em;
-
-  span 
-  {
-    margin-bottom: 0px;
-  }
+}
+ 
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) 
+{ 
+ font-size: 0.8em;
+}
+ 
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) 
+{ 
+ font-size: 0.6em;
+}
+ 
+/* Landscape phones and down */
+@media (max-width: 480px) 
+{ 
+ font-size: 0.4em;
 }
 
 .item {
@@ -27,31 +31,6 @@
   padding:       10px;    
   color:         white;
   border-radius: 0.5em 0.5em 0.5em 0.5em;
-
-/*  h4 {
-    padding-top: 10px;
-    text-align: center;
-  }*/
-/*  .badge {
-    position: absolute;
-    top:10px;
-    left: 10px;
-    font-size: 0.8em;
-  }
-
-  .label {
-    position: absolute;
-    top:10px;
-    right: 10px;
-  }*/
-
-/*  a {
-    text-decoration: none;
-  }
-
-  a:hover {
-    color: #16b5f1;
-  }*/
 
   span
   {
@@ -131,7 +110,7 @@
     background: none;
   }
 
-  span.badge
+  span.level
   {
     font-size: 1.3em;
     font-weight: bold;
@@ -150,6 +129,51 @@
     position: absolute;
     bottom: 10%;
     left: 0px;
+  }
+}
+
+#actors .item 
+{
+  background: #777;
+  background-image: linear-gradient( to bottom, hsla(0, 1%, 0%, 0), hsla(0, 0%, 0%, 0.5) );
+
+  span.name
+  {
+    font-size: 1.5em; 
+    font-weight: bold;
+  }
+
+  span.type
+  {
+    color: #999;
+    width: 100%;
+    height: 20%;
+    margin: -4px 0 0 0;
+    font-size: 1.1em;
+    font-weight: normal;
+  }
+
+  span.label-danger
+  {
+    background: none;
+  }
+
+  span.label-success
+  {
+    background: none;
+  }
+
+  span.points
+  {
+    font-size: 1.3em;
+    font-weight: bold;
+    border-radius: 20%;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    right: 7%;
+    bottom: 14%;
+    padding: 10px;
   }
 }
 
